@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rahulyadav.dev"), // Consider replacing with your actual domain
+  metadataBase: new URL("https://rahulyadav-dev.vercel.app/"), // Consider replacing with your actual domain
   title: {
     default: "Rahul Yadav | Senior Software Engineer",
     template: "%s | Rahul Yadav",
