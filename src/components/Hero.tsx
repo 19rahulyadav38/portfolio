@@ -61,7 +61,7 @@ export function Hero() {
             src="/images/photo.webp" // Make sure to match exact filename
             alt="Rahul Yadav"
             fill
-            className="object-cover"
+            className="object-contain scale-110"
             priority
           />
         </motion.div>
