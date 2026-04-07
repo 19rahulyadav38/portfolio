@@ -37,13 +37,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://rahulyadav.dev",
+    url: "https://rahulyadav-dev.vercel.app/",
     title: "Rahul Yadav | Senior Software Engineer",
     description: "Architecting Scalable Apps for Millions of Users. Explore my portfolio and projects.",
     siteName: "Rahul Yadav Portfolio",
     images: [
       {
-        url: "/images/photo.jpeg", // Using your profile picture for OG share image
+        url: "/images/photo.webp", // Using your profile picture for OG share image
         width: 1200,
         height: 630,
         alt: "Rahul Yadav - Senior Software Engineer",

@@ -58,7 +58,7 @@ export function Hero() {
             <span className="text-xs">Image</span>
           </div>
           <Image
-            src="/images/photo.jpeg" // Make sure to match exact filename
+            src="/images/photo.webp" // Make sure to match exact filename
             alt="Rahul Yadav"
             fill
             className="object-cover"
