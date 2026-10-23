@@ -6,37 +6,41 @@ import Image from "next/image";
 
 const experiences = [
   {
-    role: "Senior Software Engineer",
-    company: "Zupee",
-    period: "Aug 2025 - Present",
+    role: "Lead Product Engineer",
+    company: "Astro Arun Pandit",
+    period: "May 2026 - Present",
     achievements: [
-      "Spearheaded 2 multiplatform React Native apps from scratch, unlocking new revenue verticals.",
-      "Scaled multiple games to a single iOS super app, boosting overall revenue by 120%.",
-      "Integrated AI/LLM models with intelligent fallback mechanisms to improve prediction accuracy.",
-      "Improved platform reliability to 99.90% crash-free rate and reduced ANRs below 0.2%.",
-      "Decreased memory leaks via Xcode profiling and reduced app startup time via lazy loading."
+      "Architected per-session WebSocket infrastructure for real-time chat and voice consultations in React Native, with reconnection, session recovery, call resumption and message deduplication.",
+      "Reduced astrologer app fatal crashes by ~99%, from 2,754 to 30 events per release, through native audio/media fixes, startup hardening and race-condition fixes.",
+      "Eliminated a critical customer-app AudioService startup crash affecting 1,596 users, with zero occurrences in later releases.",
+      "Built the free-chat → payment → consultation funnel: pre-signup chat, server-driven offers, guest recharge, coupons and end-to-end analytics.",
+      "Led React Native architecture, performance and security work, hardening 600+ unsafe code paths; set up CI/CD, OTA updates, Sentry and Crashlytics.",
     ],
-    logo: "/images/zupee_logo.png",
+    logo: null,
   },
   {
     role: "Senior Software Engineer",
-    company: "InnovationM",
-    period: "Nov 2024 - Aug 2025",
+    company: "Zupee",
+    period: "Nov 2024 - Mar 2026",
     achievements: [
-      "Contributed to the Zupee Ludo PWA, ensuring cross-device responsiveness and low latency.",
-      "Built real-time gameplay features with Socket.io, Zustand, and TanStack Query.",
-      "Integrated CleverTap, ads (Plotline, AdMob), and Sentry for monetisation and stability."
+      "Spearheaded 2 multiplatform React Native apps built from scratch, unlocking new revenue verticals.",
+      "Scaled multiple games into a single iOS super app, boosting revenue by 120%.",
+      "Integrated Unity with React Native through Swift and Objective-C native modules, increasing total gameplay by 40%.",
+      "Improved platform reliability to a 99.90% crash-free rate and reduced ANRs below 0.2%, raising session success by ~15%.",
+      "Owned features end to end from development to production, increasing user retention by 28%.",
+      "Integrated AI/LLM models with intelligent fallback mechanisms to improve prediction accuracy.",
     ],
-    logo: "/images/innovationm_logo.jpeg",
+    logo: "/images/zupee_logo.png",
   },
   {
     role: "Software Developer",
     company: "W3Villa Technologies",
     period: "Jan 2022 - Oct 2024",
     achievements: [
-      "Developed high-performance front-end features and components using React.js.",
-      "Proficiently resolved UI performance issues to enhance overall user experience.",
-      "Collaborated heavily with backend teams to integrate REST APIs and internal frameworks."
+      "Developed front-end features and components using React, Next.js and modern web technologies.",
+      "Resolved UI performance issues to enhance overall user experience.",
+      "Collaborated with backend teams to integrate REST APIs and internal frameworks.",
+      "Managed client interactions and gathered project requirements through the project lifecycle.",
     ],
     logo: "/images/w3villa.jpeg",
   },
@@ -44,7 +48,7 @@ const experiences = [
 
 export function ExperienceTimeline() {
   return (
-    <section id="experience" className="p-16 px-6 relative">
+    <section id="experience" className="py-16 px-6 relative">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -77,8 +81,13 @@ export function ExperienceTimeline() {
               <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] glass-panel p-6 hover:border-brand/50 transition-colors duration-300">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-lg bg-background/50 overflow-hidden flex items-center justify-center border border-white/5 relative shrink-0">
-                    <span className="text-xs text-brand-muted">Logo</span>
-                    <Image src={exp.logo} alt={exp.company} fill className="object-contain p-1" />
+                    {exp.logo ? (
+                      <Image src={exp.logo} alt={exp.company} fill sizes="48px" className="object-contain p-1" />
+                    ) : (
+                      <span className="text-sm font-bold text-brand" aria-hidden="true">
+                        {exp.company.split(" ").map((word) => word[0]).join("")}
+                      </span>
+                    )}
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-foreground">{exp.role}</h3>

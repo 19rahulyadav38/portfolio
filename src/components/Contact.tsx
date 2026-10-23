@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, Mail, Send, CheckCircle, XCircle, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { submitContactForm } from "@/app/actions";
 
 export function Contact() {
@@ -12,6 +12,23 @@ export function Contact() {
     type: "success",
     message: "",
   });
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  const closeModal = () => setModalState(prev => ({ ...prev, show: false }));
+
+  useEffect(() => {
+    if (!modalState.show) return;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    closeButtonRef.current?.focus();
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeModal();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      previouslyFocused?.focus();
+    };
+  }, [modalState.show]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,7 +38,6 @@ export function Contact() {
     const formData = new FormData(formElement);
 
     try {
-      // Calls the secure Next.js 14 Server Action
       const data = await submitContactForm(formData);
 
       if (data.success) {
@@ -44,15 +60,22 @@ export function Contact() {
       {/* Modal Notification */}
       <AnimatePresence>
         {modalState.show && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-background/80 backdrop-blur-sm">
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-background/80 backdrop-blur-sm"
+            onClick={closeModal}
+          >
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="contact-modal-title"
+              onClick={(e) => e.stopPropagation()}
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="bg-[#111] border border-white/10 p-6 rounded-2xl shadow-2xl max-w-sm w-full relative"
             >
-              <button 
-                onClick={() => setModalState(prev => ({ ...prev, show: false }))}
+              <button
+                onClick={closeModal}
                 className="absolute top-4 right-4 text-brand-muted hover:text-white transition-colors"
                 type="button"
                 aria-label="Close modal"
@@ -66,15 +89,16 @@ export function Contact() {
                 ) : (
                   <XCircle className="w-16 h-16 text-red-500 mb-4" />
                 )}
-                <h3 className="text-xl font-bold text-white mb-2">
+                <h3 id="contact-modal-title" className="text-xl font-bold text-white mb-2">
                   {modalState.type === "success" ? "Message Sent!" : "Error Sending"}
                 </h3>
                 <p className="text-brand-muted mb-6">
                   {modalState.message}
                 </p>
                 <button
+                  ref={closeButtonRef}
                   type="button"
-                  onClick={() => setModalState(prev => ({ ...prev, show: false }))}
+                  onClick={closeModal}
                   className="w-full py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-colors font-medium"
                 >
                   Close
@@ -99,8 +123,8 @@ export function Contact() {
             <h2 className="text-3xl md:text-4xl font-bold">Get In Touch</h2>
           </div>
           <p className="text-brand-muted mb-8 leading-relaxed">
-            I'm currently looking for new opportunities as a Senior Software Engineer.
-            Whether you have a question or just want to say hi, I'll try my best to get back to you!
+            Whether you have a question, an opportunity, or just want to say hi,
+            I&apos;ll try my best to get back to you!
           </p>
 
           <div className="space-y-4 mb-8">
@@ -142,6 +166,15 @@ export function Contact() {
           className="flex-1"
         >
           <form onSubmit={handleSubmit} className="glass-panel p-8 space-y-4">
+            {/* Honeypot: hidden from people, bots tend to fill it in */}
+            <input
+              type="text"
+              name="botcheck"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="hidden"
+            />
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-brand-muted mb-1">Name</label>
               <input
@@ -149,6 +182,7 @@ export function Contact() {
                 id="name"
                 name="name"
                 required
+                maxLength={100}
                 className="w-full bg-background/50 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-brand/50 focus:ring-1 focus:ring-brand/50 transition-colors"
                 placeholder="John Doe"
               />
@@ -160,6 +194,7 @@ export function Contact() {
                 id="email"
                 name="email"
                 required
+                maxLength={200}
                 className="w-full bg-background/50 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-brand/50 focus:ring-1 focus:ring-brand/50 transition-colors"
                 placeholder="john@example.com"
               />
@@ -170,6 +205,7 @@ export function Contact() {
                 id="message"
                 name="message"
                 required
+                maxLength={5000}
                 rows={4}
                 className="w-full bg-background/50 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-brand/50 focus:ring-1 focus:ring-brand/50 transition-colors resize-none"
                 placeholder="Your message..."

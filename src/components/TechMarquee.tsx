@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 const technologies = [
   "React", "React Native", "Next.js", "TypeScript", 
   "Zustand", "TanStack Query", "Socket.io", "Tailwind CSS", 

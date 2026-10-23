@@ -20,7 +20,7 @@ const metrics = [
     delay: 0.2,
   },
   {
-    title: "10L+",
+    title: "1M+",
     subtitle: "Downloads",
     icon: Download,
     className: "md:col-span-1 md:row-span-1",
@@ -49,7 +49,7 @@ export function BentoBox() {
           <p className="text-brand-muted">Measurable results delivered across products.</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-3 gap-4 auto-rows-[150px]">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[150px]">
           {metrics.map((item, index) => (
             <motion.div
               key={index}

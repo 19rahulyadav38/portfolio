@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { MotionConfig } from "@/components/MotionConfig";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,16 +14,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rahulyadav-dev.vercel.app/"), // Consider replacing with your actual domain
+  metadataBase: new URL("https://rahulyadav-dev.vercel.app/"),
   title: {
-    default: "Rahul Yadav | Senior Software Engineer",
+    default: "Rahul Yadav | Lead Software Engineer",
     template: "%s | Rahul Yadav",
   },
   description:
-    "Portfolio of Rahul Yadav, a Senior Software Engineer specializing in React, React Native, and high-performance applications with a 99.9% crash-free rate.",
+    "Portfolio of Rahul Yadav, a Lead Software Engineer building real-time, high-performance React Native and React apps, with a ~99% fatal-crash reduction and 99.9% crash-free sessions.",
   keywords: [
     "Rahul Yadav",
-    "Senior Software Engineer",
+    "Lead Software Engineer",
     "React Native Expert",
     "Frontend Architect",
     "Next.js Developer",
@@ -31,27 +32,19 @@ export const metadata: Metadata = {
   ],
   authors: [
     { name: "Rahul Yadav", url: "https://www.linkedin.com/in/rahulyadav19/" },
-    { name: "Rahul Yadav", url: "https://github.com/your_github_username" }
+    { name: "Rahul Yadav", url: "https://github.com/19rahulyadav38" }
   ],
   creator: "Rahul Yadav",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://rahulyadav-dev.vercel.app/",
-    title: "Rahul Yadav | Senior Software Engineer",
+    title: "Rahul Yadav | Lead Software Engineer",
     description: "Architecting Scalable Apps for Millions of Users. Explore my portfolio and projects.",
     siteName: "Rahul Yadav Portfolio",
-    images: [
-      {
-        url: "/images/photo.webp", // Using your profile picture for OG share image
-        width: 1200,
-        height: 630,
-        alt: "Rahul Yadav - Senior Software Engineer",
-      },
-    ],
   },
   other: {
-    "github:account": "your_github_username",
+    "github:account": "19rahulyadav38",
   },
   robots: {
     index: true,
@@ -76,7 +69,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <MotionConfig>{children}</MotionConfig>
+      </body>
     </html>
   );
 }

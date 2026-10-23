@@ -2,14 +2,6 @@
 
 @config "../../tailwind.config.ts";
 
-@theme {
-  --color-brand-primary: #6610F2;
-  --color-brand-primary-hover: #520dc2;
-  --color-brand-dark: #0a0a0a;
-  --color-brand-light: #f8f9fa;
-  --color-brand-gray: #a1a1aa;
-}
-
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
@@ -58,7 +50,8 @@ body {
 /* Marquee Animation */
 @keyframes marquee {
   0% { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
+  /* The list is rendered twice, so shifting by half loops seamlessly */
+  100% { transform: translateX(-50%); }
 }
 
 .animate-marquee {
@@ -67,6 +60,14 @@ body {
 
 .animate-marquee:hover {
   animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-ping,
+  .animate-pulse {
+    animation: none;
+  }
 }
 
 /* Grid Background */

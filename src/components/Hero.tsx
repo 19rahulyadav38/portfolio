@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const roles = [
-  "Senior Software Engineer",
+  "Lead Software Engineer",
   "React Native Expert",
   "Performance Optimizer",
 ];
@@ -52,17 +52,14 @@ export function Hero() {
           transition={{ duration: 0.5 }}
           className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-brand/30 mb-8 shadow-2xl shadow-brand/20"
         >
-          {/* Using object-cover to ensure the image fills the circle nicely */}
-          <div className="w-full h-full bg-brand/10 flex items-center justify-center text-brand-muted">
-            {/* Fallback until actual image is placed in public/images */}
-            <span className="text-xs">Image</span>
-          </div>
           <Image
-            src="/images/photo.webp" // Make sure to match exact filename
+            src="/images/photo.webp"
             alt="Rahul Yadav"
             fill
-            className="object-contain scale-110"
-            priority
+            sizes="(min-width: 768px) 160px, 128px"
+            className="object-contain scale-110 bg-brand/10"
+            loading="eager"
+            fetchPriority="high"
           />
         </motion.div>
 
@@ -76,17 +73,12 @@ export function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
           </span>
-          <span className="tracking-wide">Available for new opportunities</span>
+          <span className="tracking-wide">Lead Product Engineer at Astro Arun Pandit</span>
         </motion.div>
 
-        <motion.h1
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
-        >
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
           Architecting Scalable Apps for <span className="text-brand">Millions of Users.</span>
-        </motion.h1>
+        </h1>
 
         <motion.div
           initial={{ y: 20, opacity: 0 }}
@@ -94,8 +86,9 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-xl md:text-2xl text-brand-muted h-8 mb-10 flex items-center justify-center space-x-2"
         >
-          <span>I am a</span>
-          <span className="font-semibold text-foreground min-w-[250px] text-left">
+          <span className="sr-only">I am a {roles.join(", ")}</span>
+          <span aria-hidden="true">I am a</span>
+          <span aria-hidden="true" className="font-semibold text-foreground min-w-[250px] text-left">
             {displayText}
             <span className="animate-pulse">|</span>
           </span>
