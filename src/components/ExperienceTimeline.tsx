@@ -11,11 +11,11 @@ const experiences = [
     company: "Astro Arun Pandit",
     period: "May 2026 - Present",
     achievements: [
-      "Architected per-session WebSocket infrastructure for real-time chat and voice consultations in React Native, with reconnection, session recovery, call resumption and message deduplication.",
+      "Architected per-session WebSocket infrastructure for real-time chat and voice consultations, with reconnection, session recovery, call resumption and message deduplication.",
       "Reduced astrologer app fatal crashes by ~99%, from 2,754 to 30 events per release, through native audio/media fixes, startup hardening and race-condition fixes.",
       "Eliminated a critical customer-app AudioService startup crash affecting 1,596 users, with zero occurrences in later releases.",
       "Built the free-chat → payment → consultation funnel: pre-signup chat, server-driven offers, guest recharge, coupons and end-to-end analytics.",
-      "Led React Native architecture, performance and security work, hardening 600+ unsafe code paths; set up CI/CD, OTA updates, Sentry and Crashlytics.",
+      "Led mobile architecture, performance and security work, hardening 600+ unsafe code paths; set up CI/CD, OTA updates, Sentry and Crashlytics.",
     ],
     logo: null,
   },
@@ -38,9 +38,9 @@ const experiences = [
     company: "W3Villa Technologies",
     period: "Jan 2022 - Oct 2024",
     achievements: [
-      "Developed front-end features and components using React, Next.js and modern web technologies.",
-      "Resolved UI performance issues to enhance overall user experience.",
-      "Collaborated with backend teams to integrate REST APIs and internal frameworks.",
+      "Built web apps for clients across insurance, fintech, agritech, proptech and care, with React, Next.js and Angular.",
+      "Led the frontend teams on Nomadroof and Kivo Calendar, owning code review and delivery.",
+      "Integrated React into Ruby on Rails apps and added WebSocket messaging; resolved UI performance issues.",
       "Managed client interactions and gathered project requirements through the project lifecycle.",
     ],
     logo: "/images/w3villa.jpeg",
@@ -52,7 +52,7 @@ export function ExperienceTimeline() {
     <section id="experience" className="py-24 px-6 relative">
       <div className="max-w-6xl mx-auto">
         <SectionHeading
-          eyebrow="// 03 · release log"
+          eyebrow="// 02 · release log"
           title="Experience"
           description="Every role so far, newest first."
         />

@@ -79,6 +79,22 @@ function StatPanel({ label, source, value, caption, delay }: { label: string; so
   );
 }
 
+// Fatal crash events per release of the astrologer app (Crashlytics, Android, Jun–Sep 2026)
+const crashReleases = [
+  { version: "1.0.24", events: 2754 },
+  { version: "1.0.25", events: 1634 },
+  { version: "1.0.26", events: 231 },
+  { version: "1.0.27", events: 288 },
+  { version: "1.0.28", events: 30 },
+];
+
+const crashTone = (events: number) =>
+  events > 1000
+    ? { text: "text-danger", bar: "from-danger/80 to-danger/30" }
+    : events > 100
+      ? { text: "text-warn", bar: "from-warn/80 to-warn/30" }
+      : { text: "text-signal", bar: "from-signal to-signal/50" };
+
 const RING_RADIUS = 52;
 const RING_LENGTH = 2 * Math.PI * RING_RADIUS;
 
@@ -104,32 +120,30 @@ export function Impact() {
               <p className="text-5xl md:text-6xl font-bold tracking-tight text-signal">−99%</p>
             </div>
             <p className="text-sm text-brand-muted max-w-sm">
-              Astrologer app, after native audio and media fixes, startup hardening and race-condition fixes.
+              Astrologer app, release by release, after fixing native audio and media crashes and reclassifying network errors that were reported as fatal.
             </p>
 
-            <div className="mt-8 flex-1 min-h-[180px] flex items-end gap-6 border-b border-white/10 pb-0">
-              {[
-                { label: "before", value: 2754, color: "from-danger/80 to-danger/30", height: 100 },
-                { label: "after", value: 30, color: "from-signal to-signal/50", height: 3 },
-              ].map((bar, index) => (
-                <div key={bar.label} className="flex-1 h-full flex flex-col justify-end items-center gap-2">
-                  <span className={cn("font-mono text-sm font-semibold", index === 0 ? "text-danger" : "text-signal")}>
-                    <CountUp to={bar.value} />
+            <div className="mt-8 flex-1 min-h-[180px] flex items-end gap-2 sm:gap-4 border-b border-white/10">
+              {crashReleases.map((release, index) => (
+                <div key={release.version} className="flex-1 h-full flex flex-col justify-end items-center gap-2">
+                  <span className={cn("font-mono text-[11px] sm:text-sm font-semibold", crashTone(release.events).text)}>
+                    <CountUp to={release.events} />
                   </span>
                   <motion.div
                     initial={{ scaleY: 0 }}
                     whileInView={{ scaleY: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.2 + index * 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ height: `${bar.height}%` }}
-                    className={cn("w-full max-w-[120px] origin-bottom rounded-t-lg bg-gradient-to-t min-h-[6px]", bar.color)}
+                    transition={{ duration: 0.8, delay: 0.15 + index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ height: `${(release.events / crashReleases[0].events) * 100}%` }}
+                    className={cn("w-full max-w-[72px] origin-bottom rounded-t-md bg-gradient-to-t min-h-[6px]", crashTone(release.events).bar)}
                   />
                 </div>
               ))}
             </div>
-            <div className="flex gap-6 mt-2 font-mono text-[11px] text-brand-muted">
-              <span className="flex-1 text-center">before</span>
-              <span className="flex-1 text-center">after</span>
+            <div className="flex gap-2 sm:gap-4 mt-2 font-mono text-[10px] sm:text-[11px] text-brand-muted">
+              {crashReleases.map((release) => (
+                <span key={release.version} className="flex-1 text-center">{release.version}</span>
+              ))}
             </div>
           </Panel>
 

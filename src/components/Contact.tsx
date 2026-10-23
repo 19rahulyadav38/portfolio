@@ -118,7 +118,7 @@ export function Contact() {
           viewport={{ once: true }}
         >
           <SectionHeading
-            eyebrow="// 05 · open a session"
+            eyebrow="// 07 · open a session"
             title={<>Let&apos;s build something that <span className="text-gradient">stays up.</span></>}
             description="Whether you have a question, an opportunity, or just want to say hi, I'll try my best to get back to you!"
           />

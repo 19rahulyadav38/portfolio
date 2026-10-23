@@ -11,9 +11,9 @@ const layers = [
     skills: ["Sentry", "Crashlytics", "New Relic", "Bugsnag", "CleverTap", "Structured logging"],
   },
   {
-    name: "Product & web",
-    note: "Interfaces people enjoy using",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "ShadCN/UI", "Material UI"],
+    name: "Web",
+    note: "Apps, dashboards and PWAs people enjoy using",
+    skills: ["React", "Next.js", "TypeScript", "Angular", "Redux Toolkit", "Redux-Saga", "Tailwind CSS", "SCSS", "Bootstrap", "Material UI", "ShadCN/UI", "D3.js", "PWA"],
   },
   {
     name: "Mobile",
@@ -28,7 +28,7 @@ const layers = [
   {
     name: "Real-time & backend",
     note: "Sockets, sessions and the APIs behind them",
-    skills: ["WebSocket", "Socket.IO", "Node.js", "Express", "MongoDB", "GraphQL", "REST APIs"],
+    skills: ["WebSocket", "Socket.IO", "Node.js", "Express", "Ruby on Rails", "MongoDB", "GraphQL", "REST APIs"],
   },
   {
     name: "Delivery",
@@ -42,9 +42,9 @@ export function Stack() {
     <section id="stack" className="py-24 px-6 relative">
       <div className="max-w-6xl mx-auto">
         <SectionHeading
-          eyebrow="// 02 · architecture"
+          eyebrow="// 05 · architecture"
           title="The stack, layer by layer"
-          description="From native modules up to the dashboards that tell me when something breaks."
+          description="Web and mobile, from native modules up to the dashboards that tell me when something breaks."
         />
 
         <ol className="space-y-3">

@@ -7,6 +7,7 @@ import { PhoneSession } from "@/components/PhoneSession";
 
 const roles = [
   "Lead Software Engineer",
+  "React & Next.js Developer",
   "React Native Specialist",
   "Real-time Systems Builder",
   "Performance Optimizer",
@@ -71,13 +72,13 @@ export function Hero() {
             <div>
               <p className="font-semibold text-lg leading-tight">Rahul Yadav</p>
               <p className="flex items-center gap-1.5 text-sm text-brand-muted font-mono mt-1">
-                <MapPin className="w-3.5 h-3.5" /> Noida, IN · 4.8+ yrs
+                <MapPin className="w-3.5 h-3.5" /> Noida, IN · 4.8+ yrs · web & mobile
               </p>
             </div>
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-[4.25rem] font-bold tracking-tight leading-[1.05] mb-6">
-            Real-time mobile apps that <span className="text-gradient">millions rely on.</span>
+            Real-time web and mobile apps that <span className="text-gradient">millions rely on.</span>
           </h1>
 
           <p className="font-mono text-base md:text-lg text-brand-muted h-7 mb-6">
@@ -89,8 +90,9 @@ export function Hero() {
           </p>
 
           <p className="text-brand-muted text-lg leading-relaxed max-w-xl mb-10">
-            I build React Native and React apps end to end: WebSocket chat and voice, native Android and iOS
-            modules, payments, and the observability that cut fatal crashes by 99%.
+            I build for the web with React and Next.js, and for mobile with React Native and native Android and
+            iOS: real-time chat and voice, payments, dashboards, and the observability that cut one app&apos;s
+            fatal crashes by 99%.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-14">

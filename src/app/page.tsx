@@ -6,6 +6,8 @@ import { Stack } from "@/components/Stack";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { Projects } from "@/components/Projects";
 import { Contact } from "@/components/Contact";
+import { CaseStudy } from "@/components/CaseStudy";
+import { ClientWork } from "@/components/ClientWork";
 
 export default function Home() {
   return (
@@ -15,8 +17,10 @@ export default function Home() {
         <Hero />
         <ShipLog />
         <Impact />
-        <Stack />
         <ExperienceTimeline />
+        <CaseStudy />
+        <ClientWork />
+        <Stack />
         <Projects />
         <Contact />
       </main>

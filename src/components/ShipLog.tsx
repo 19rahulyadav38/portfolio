@@ -10,6 +10,9 @@ const events = [
   { tag: "ship", text: "2 React Native apps built from scratch", tone: "brand" },
   { tag: "funnel", text: "free chat → payment → consultation", tone: "brand" },
   { tag: "retention", text: "+28% user retention", tone: "signal" },
+  { tag: "web", text: "real-money Ludo PWA in React + Socket.IO", tone: "brand" },
+  { tag: "lead", text: "frontend lead on Nomadroof & Kivo Calendar", tone: "brand" },
+  { tag: "npm", text: "published react-time-slots-manager", tone: "signal" },
 ];
 
 // Duplicate for infinite scrolling effect

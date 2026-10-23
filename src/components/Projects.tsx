@@ -41,14 +41,30 @@ const projects = [
     slug: "fdms",
     status: "Open source",
     summary:
-      "Feature Dependency Management System: a backend for tracking product features and the dependencies between them.",
+      "Feature Dependency Management System: add, update and remove a product's features and see how they depend on each other as a graph.",
     highlights: [
-      "REST API to create, update, disable and delete features, grouped by area and class.",
-      "Stores dependency links between features and serves them as a graph for visualisation.",
+      "React front end with an interactive D3.js dependency graph of every feature in a project.",
+      "Node and Express REST API to create, update, disable and delete features and the links between them.",
       "JWT-protected routes with bcrypt-hashed credentials, run under PM2.",
     ],
-    tech: ["Node.js", "Express", "MongoDB", "Mongoose", "JWT"],
+    tech: ["React", "D3.js", "Node.js", "Express", "MongoDB", "JWT"],
     links: [{ label: "Code", href: "https://github.com/19rahulyadav38/feature-dependency-backend", icon: Code2 }],
+  },
+  {
+    name: "react-time-slots-manager",
+    slug: "react-time-slots-manager",
+    status: "npm package",
+    summary: "A React package that generates time slots at any interval you choose.",
+    highlights: [
+      "Returns slots as readable times or Unix timestamps.",
+      "Optionally groups slots under each weekday, ready for booking UIs.",
+      "Published on npm, with a CodeSandbox demo.",
+    ],
+    tech: ["React", "Tailwind CSS", "ShadCN/UI"],
+    links: [
+      { label: "npm", href: "https://www.npmjs.com/package/react-time-slots-manager", icon: ExternalLink },
+      { label: "Code", href: "https://github.com/19rahulyadav38/react-time-slots-manager", icon: Code2 },
+    ],
   },
 ];
 
@@ -57,7 +73,7 @@ export function Projects() {
     <section id="projects" className="py-24 px-6 relative">
       <div className="max-w-6xl mx-auto">
         <SectionHeading
-          eyebrow="// 04 · side projects"
+          eyebrow="// 06 · side projects"
           title="Built after hours"
           description="Things I designed and built on my own time."
         />
@@ -72,7 +88,7 @@ export function Projects() {
               transition={{ delay: index * 0.1, duration: 0.5 }}
               className={cn(
                 "glass-panel overflow-hidden flex flex-col hover:border-brand/40 transition-colors",
-                index === 0 && "md:col-span-2"
+                (index === 0 || (index === projects.length - 1 && projects.length % 2 === 0)) && "md:col-span-2"
               )}
             >
               {/* Window chrome */}
