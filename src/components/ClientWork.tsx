@@ -15,7 +15,29 @@ const work: {
   role: string;
   tech: string[];
   href?: string;
+  org?: string;
+  reach?: string;
 }[] = [
+  {
+    name: "Neo Astro",
+    platform: "Mobile",
+    org: "Zupee",
+    reach: "1M+ downloads",
+    summary: "Talk to certified astrologers over chat, call and video, with kundli, horoscopes and tarot.",
+    role: "Integrated multiple AI/LLM models with intelligent fallbacks to improve prediction accuracy",
+    tech: ["React Native", "AI/LLM APIs"],
+    href: "https://play.google.com/store/apps/details?id=com.neoastro.android",
+  },
+  {
+    name: "Tez Rummy",
+    platform: "Mobile",
+    org: "Zupee",
+    reach: "1M+ downloads",
+    summary: "Skill-based online rummy with real players: Points, Pool and Deals formats.",
+    role: "Moved the gameplay app to React Native's New Architecture to support 16 KB memory pages",
+    tech: ["React Native", "New Architecture"],
+    href: "https://play.google.com/store/apps/details?id=com.battles99.rummyandroid",
+  },
   {
     name: "Zupee Ludo",
     platform: "PWA",
@@ -100,9 +122,9 @@ export function ClientWork() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <div className="[&>div]:mb-0">
             <SectionHeading
-              eyebrow="// 04 · client work"
-              title="Shipped for clients"
-              description="Web apps, dashboards and PWAs I built or led, mostly with React and Next.js."
+              eyebrow="// 04 · shipped work"
+              title="Apps and sites I've shipped"
+              description="Mobile apps used by millions at Zupee, and web apps, dashboards and PWAs for clients."
             />
           </div>
 
@@ -162,7 +184,12 @@ export function ClientWork() {
                     </a>
                   )}
                 </div>
-                <h3 className="font-bold text-xl mb-2">{item.name}</h3>
+                <h3 className="font-bold text-xl mb-1">{item.name}</h3>
+                {(item.org || item.reach) && (
+                  <p className="font-mono text-xs text-brand-muted mb-2">
+                    {[item.org, item.reach].filter(Boolean).join(" · ")}
+                  </p>
+                )}
                 <p className="text-sm text-brand-muted leading-relaxed mb-4">{item.summary}</p>
                 <p className="text-sm text-foreground/80 leading-relaxed mb-5">
                   <span className="font-mono text-xs text-brand-light">role: </span>

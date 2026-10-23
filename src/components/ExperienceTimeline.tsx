@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { SectionHeading } from "@/components/SectionHeading";
 import { cn } from "@/lib/utils";
@@ -32,6 +33,10 @@ const experiences = [
       "Integrated AI/LLM models with intelligent fallback mechanisms to improve prediction accuracy.",
     ],
     logo: "/images/zupee_logo.png",
+    apps: [
+      { name: "Neo Astro", href: "https://play.google.com/store/apps/details?id=com.neoastro.android" },
+      { name: "Tez Rummy", href: "https://play.google.com/store/apps/details?id=com.battles99.rummyandroid" },
+    ],
   },
   {
     role: "Software Developer",
@@ -110,6 +115,23 @@ export function ExperienceTimeline() {
                       </li>
                     ))}
                   </ul>
+                  {"apps" in exp && exp.apps && (
+                    <div className="flex flex-wrap items-center gap-2 mt-6 pt-5 border-t border-white/10">
+                      <span className="font-mono text-xs text-brand-muted mr-1">on Google Play:</span>
+                      {exp.apps.map((app) => (
+                        <a
+                          key={app.href}
+                          href={app.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-full border border-white/15 hover:bg-white/5 transition-colors"
+                        >
+                          {app.name}
+                          <ArrowUpRight className="w-3.5 h-3.5 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </motion.li>
             );
