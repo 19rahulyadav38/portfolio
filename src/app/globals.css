@@ -10,9 +10,19 @@
   --brand-hover: #520dc2;
   --brand-text: #f8f9fa;
   --brand-muted: #a1a1aa;
+  --brand-light: #a78bfa;
+
+  --signal: #34d399;
+  --warn: #fbbf24;
+  --danger: #f87171;
 
   --border: rgba(255, 255, 255, 0.1);
   --glass-bg: rgba(255, 255, 255, 0.03);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 body {
@@ -30,6 +40,14 @@ body {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 1rem;
+}
+
+/* Violet-to-green headline accent */
+.text-gradient {
+  background: linear-gradient(90deg, #c4b5fd, #8b5cf6 45%, var(--signal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Scrollbar customization */
@@ -63,6 +81,10 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .animate-marquee,
   .animate-ping,
   .animate-pulse {

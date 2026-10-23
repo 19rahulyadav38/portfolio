@@ -1,9 +1,10 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Link, Mail, Send, CheckCircle, XCircle, X } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, Phone, Send, CheckCircle, XCircle, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { submitContactForm } from "@/app/actions";
+import { SectionHeading } from "@/components/SectionHeading";
 
 export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -56,7 +57,8 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 relative">
+    <section id="contact" className="py-24 px-6 relative overflow-hidden">
+      <div aria-hidden="true" className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand/15 blur-[140px] rounded-full pointer-events-none" />
       {/* Modal Notification */}
       <AnimatePresence>
         {modalState.show && (
@@ -109,63 +111,75 @@ export function Contact() {
         )}
       </AnimatePresence>
 
-      <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 relative z-10">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 relative z-10">
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex-1"
         >
-          <div className="flex items-center gap-4 mb-6">
-            <div className="p-3 bg-brand/10 rounded-xl text-brand">
-              <Mail className="w-6 h-6" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold">Get In Touch</h2>
-          </div>
-          <p className="text-brand-muted mb-8 leading-relaxed">
-            Whether you have a question, an opportunity, or just want to say hi,
-            I&apos;ll try my best to get back to you!
-          </p>
+          <SectionHeading
+            eyebrow="// 05 · open a session"
+            title={<>Let&apos;s build something that <span className="text-gradient">stays up.</span></>}
+            description="Whether you have a question, an opportunity, or just want to say hi, I'll try my best to get back to you!"
+          />
 
-          <div className="space-y-4 mb-8">
-            <div className="flex items-center gap-3 text-brand-muted hover:text-white transition-colors">
-              <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-                <Mail className="w-4 h-4" />
-              </div>
-              <a href="mailto:19rahulyadav38@gmail.com" className="hover:underline">19rahulyadav38@gmail.com</a>
-            </div>
-            <div className="flex items-center gap-3 text-brand-muted hover:text-white transition-colors">
-              <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-              </div>
-              <a href="tel:+916306875871" className="hover:underline">+91 6306875871</a>
-            </div>
-            <div className="flex items-center gap-3 text-brand-muted hover:text-white transition-colors">
-              <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-              </div>
-              <span>Sector 121, Noida, Uttar Pradesh</span>
-            </div>
-          </div>
+          <ul className="space-y-3 mb-8">
+            <li>
+              <a href="mailto:19rahulyadav38@gmail.com" className="group flex items-center gap-4 text-brand-muted hover:text-white transition-colors">
+                <span className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center shrink-0"><Mail className="w-4 h-4" /></span>
+                19rahulyadav38@gmail.com
+              </a>
+            </li>
+            <li>
+              <a href="tel:+916306875871" className="group flex items-center gap-4 text-brand-muted hover:text-white transition-colors">
+                <span className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center shrink-0"><Phone className="w-4 h-4" /></span>
+                +91 6306875871
+              </a>
+            </li>
+            <li className="flex items-center gap-4 text-brand-muted">
+              <span className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center shrink-0"><MapPin className="w-4 h-4" /></span>
+              Sector 121, Noida, Uttar Pradesh
+            </li>
+          </ul>
 
-          <a
-            href="https://www.linkedin.com/in/rahulyadav19/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-6 py-3 glass-panel hover:bg-brand/10 hover:border-brand/30 transition-all duration-300 group"
-          >
-            <Link className="w-5 h-5 text-[#0077b5] group-hover:scale-110 transition-transform" />
-            <span className="font-medium">Connect on LinkedIn</span>
-          </a>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href="https://www.linkedin.com/in/rahulyadav19/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 hover:bg-white/5 transition-colors"
+            >
+              LinkedIn
+              <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+            <a
+              href="https://github.com/19rahulyadav38"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 hover:bg-white/5 transition-colors"
+            >
+              GitHub
+              <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+          </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex-1"
+          transition={{ delay: 0.1 }}
+          className="glass-panel overflow-hidden self-start"
         >
-          <form onSubmit={handleSubmit} className="glass-panel p-8 space-y-4">
+          {/* Window chrome */}
+          <div className="flex items-center gap-2 px-5 py-3 border-b border-white/10 bg-white/[0.02]">
+            <span className="w-2.5 h-2.5 rounded-full bg-danger/70" />
+            <span className="w-2.5 h-2.5 rounded-full bg-warn/70" />
+            <span className="w-2.5 h-2.5 rounded-full bg-signal/70" />
+            <span className="ml-3 font-mono text-xs text-brand-muted">new-message.ts</span>
+          </div>
+
+          <form onSubmit={handleSubmit} className="p-6 md:p-8 space-y-5">
             {/* Honeypot: hidden from people, bots tend to fill it in */}
             <input
               type="text"
@@ -176,49 +190,25 @@ export function Contact() {
               className="hidden"
             />
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-brand-muted mb-1">Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                maxLength={100}
-                className="w-full bg-background/50 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-brand/50 focus:ring-1 focus:ring-brand/50 transition-colors"
-                placeholder="John Doe"
-              />
+              <label htmlFor="name" className="block font-mono text-xs text-brand-light mb-2">name</label>
+              <input type="text" id="name" name="name" required maxLength={100} className="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-3 placeholder:text-white/25 focus:outline-none focus:border-brand/60 focus:ring-1 focus:ring-brand/60 transition-colors" placeholder="John Doe" />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-brand-muted mb-1">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                maxLength={200}
-                className="w-full bg-background/50 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-brand/50 focus:ring-1 focus:ring-brand/50 transition-colors"
-                placeholder="john@example.com"
-              />
+              <label htmlFor="email" className="block font-mono text-xs text-brand-light mb-2">email</label>
+              <input type="email" id="email" name="email" required maxLength={200} className="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-3 placeholder:text-white/25 focus:outline-none focus:border-brand/60 focus:ring-1 focus:ring-brand/60 transition-colors" placeholder="john@example.com" />
             </div>
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-brand-muted mb-1">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                maxLength={5000}
-                rows={4}
-                className="w-full bg-background/50 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-brand/50 focus:ring-1 focus:ring-brand/50 transition-colors resize-none"
-                placeholder="Your message..."
-              />
+              <label htmlFor="message" className="block font-mono text-xs text-brand-light mb-2">message</label>
+              <textarea id="message" name="message" required maxLength={5000} rows={5} className="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-3 placeholder:text-white/25 focus:outline-none focus:border-brand/60 focus:ring-1 focus:ring-brand/60 transition-colors resize-none" placeholder="Tell me about your project or role..." />
             </div>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-brand text-white py-3 rounded-lg font-medium hover:bg-brand-hover transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-brand text-white py-3.5 rounded-lg font-medium hover:bg-brand-hover transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-brand/25"
             >
               {isSubmitting ? "Sending..." : (
                 <>
-                  <span>Send Message</span>
+                  <span>Send message</span>
                   <Send className="w-4 h-4" />
                 </>
               )}

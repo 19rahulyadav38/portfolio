@@ -1,25 +1,37 @@
+import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
+import { ShipLog } from "@/components/ShipLog";
+import { Impact } from "@/components/Impact";
+import { Stack } from "@/components/Stack";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
-import { BentoBox } from "@/components/BentoBox";
-import { TechMarquee } from "@/components/TechMarquee";
-import { SkillsSet } from "@/components/SkillsSet";
-import { Contact } from "@/components/Contact";
 import { Projects } from "@/components/Projects";
+import { Contact } from "@/components/Contact";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground antialiased selection:bg-brand selection:text-white">
-      <Hero />
-      <TechMarquee />
-      <SkillsSet />
-      <BentoBox />
-      <ExperienceTimeline />
-      <Projects />
-      <Contact />
-      
-      <footer className="py-8 text-center text-brand-muted text-sm border-t border-white/5">
-        <p>© {new Date().getFullYear()} Rahul Yadav. Built with Next.js & Tailwind CSS.</p>
+    <>
+      <Nav />
+      <main className="min-h-screen bg-background text-foreground antialiased selection:bg-brand selection:text-white">
+        <Hero />
+        <ShipLog />
+        <Impact />
+        <Stack />
+        <ExperienceTimeline />
+        <Projects />
+        <Contact />
+      </main>
+
+      {/* Status bar */}
+      <footer className="border-t border-white/10 bg-black/40 font-mono text-xs text-brand-muted">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <span className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-signal" />
+            all systems operational
+          </span>
+          <span>© {new Date().getFullYear()} Rahul Yadav</span>
+          <span>built with Next.js · Tailwind CSS</span>
+        </div>
       </footer>
-    </main>
+    </>
   );
 }

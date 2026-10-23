@@ -21,10 +21,10 @@ export default function Image() {
       >
         <div style={{ fontSize: 36, color: "#a1a1aa", marginBottom: 24 }}>Rahul Yadav</div>
         <div style={{ fontSize: 72, fontWeight: 700, lineHeight: 1.1 }}>
-          Architecting Scalable Apps for
+          Real-time mobile apps that
         </div>
-        <div style={{ fontSize: 72, fontWeight: 700, lineHeight: 1.1, color: "#8b4dff" }}>
-          Millions of Users.
+        <div style={{ fontSize: 72, fontWeight: 700, lineHeight: 1.1, color: "#a78bfa" }}>
+          millions rely on.
         </div>
         <div style={{ fontSize: 32, color: "#a1a1aa", marginTop: 40 }}>
           Lead Software Engineer · React Native · React

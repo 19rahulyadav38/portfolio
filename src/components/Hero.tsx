@@ -1,14 +1,21 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Download } from "lucide-react";
+import { ArrowRight, Download, MapPin } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { PhoneSession } from "@/components/PhoneSession";
 
 const roles = [
   "Lead Software Engineer",
-  "React Native Expert",
+  "React Native Specialist",
+  "Real-time Systems Builder",
   "Performance Optimizer",
+];
+
+const heroStats = [
+  { value: "99.90%", label: "crash-free sessions" },
+  { value: "−99%", label: "fatal crashes" },
+  { value: "+120%", label: "revenue growth" },
 ];
 
 export function Hero() {
@@ -18,8 +25,8 @@ export function Hero() {
 
   useEffect(() => {
     const currentRole = roles[currentRoleIndex];
-    const typingSpeed = isDeleting ? 50 : 150;
-    const delay = isDeleting && displayText === "" ? 200 : (!isDeleting && displayText === currentRole) ? 1000 : typingSpeed;
+    const typingSpeed = isDeleting ? 40 : 90;
+    const delay = isDeleting && displayText === "" ? 200 : (!isDeleting && displayText === currentRole) ? 1600 : typingSpeed;
 
     const timeout = setTimeout(() => {
       if (!isDeleting && displayText === currentRole) {
@@ -39,82 +46,83 @@ export function Hero() {
   }, [displayText, isDeleting, currentRoleIndex]);
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center pt-20 pb-12 px-6 relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
+    <section id="top" className="relative min-h-screen flex items-center pt-32 pb-20 px-6 overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-grid-pattern opacity-60 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_10%,transparent_70%)]"
+      />
+      <div aria-hidden="true" className="absolute -top-48 left-1/4 w-[640px] h-[640px] bg-brand/25 blur-[140px] rounded-full pointer-events-none" />
+      <div aria-hidden="true" className="absolute -bottom-32 right-0 w-[420px] h-[420px] bg-signal/10 blur-[120px] rounded-full pointer-events-none" />
 
-      {/* Glow Effect */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand/20 blur-[120px] rounded-full pointer-events-none" />
+      <div className="relative z-10 max-w-6xl mx-auto w-full grid lg:grid-cols-[1.2fr_0.8fr] gap-16 lg:gap-12 items-center">
+        <div>
+          <div className="flex items-center gap-4 mb-10">
+            <div className="relative w-16 h-16 rounded-2xl overflow-hidden border border-white/10 shadow-lg shadow-brand/20 shrink-0">
+              <Image
+                src="/images/photo.webp"
+                alt="Rahul Yadav"
+                fill
+                sizes="64px"
+                className="object-contain scale-110 bg-brand/10"
+                loading="eager"
+                fetchPriority="high"
+              />
+            </div>
+            <div>
+              <p className="font-semibold text-lg leading-tight">Rahul Yadav</p>
+              <p className="flex items-center gap-1.5 text-sm text-brand-muted font-mono mt-1">
+                <MapPin className="w-3.5 h-3.5" /> Noida, IN · 4.8+ yrs
+              </p>
+            </div>
+          </div>
 
-      <div className="max-w-4xl mx-auto flex flex-col items-center text-center z-10">
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-brand/30 mb-8 shadow-2xl shadow-brand/20"
-        >
-          <Image
-            src="/images/photo.webp"
-            alt="Rahul Yadav"
-            fill
-            sizes="(min-width: 768px) 160px, 128px"
-            className="object-contain scale-110 bg-brand/10"
-            loading="eager"
-            fetchPriority="high"
-          />
-        </motion.div>
+          <h1 className="text-4xl sm:text-5xl lg:text-[4.25rem] font-bold tracking-tight leading-[1.05] mb-6">
+            Real-time mobile apps that <span className="text-gradient">millions rely on.</span>
+          </h1>
 
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="inline-flex items-center space-x-3 bg-brand/15 text-white px-5 py-2.5 rounded-full mb-6 font-semibold text-sm md:text-base border border-brand/50 shadow-[0_0_25px_rgba(102,16,242,0.4)] backdrop-blur-md"
-        >
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
-          </span>
-          <span className="tracking-wide">Lead Product Engineer at Astro Arun Pandit</span>
-        </motion.div>
+          <p className="font-mono text-base md:text-lg text-brand-muted h-7 mb-6">
+            <span className="sr-only">I am a {roles.join(", ")}</span>
+            <span aria-hidden="true">
+              <span className="text-signal">&gt;</span> {displayText}
+              <span className="animate-pulse text-brand-light">▍</span>
+            </span>
+          </p>
 
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-          Architecting Scalable Apps for <span className="text-brand">Millions of Users.</span>
-        </h1>
+          <p className="text-brand-muted text-lg leading-relaxed max-w-xl mb-10">
+            I build React Native and React apps end to end: WebSocket chat and voice, native Android and iOS
+            modules, payments, and the observability that cut fatal crashes by 99%.
+          </p>
 
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-xl md:text-2xl text-brand-muted h-8 mb-10 flex items-center justify-center space-x-2"
-        >
-          <span className="sr-only">I am a {roles.join(", ")}</span>
-          <span aria-hidden="true">I am a</span>
-          <span aria-hidden="true" className="font-semibold text-foreground min-w-[250px] text-left">
-            {displayText}
-            <span className="animate-pulse">|</span>
-          </span>
-        </motion.div>
+          <div className="flex flex-col sm:flex-row gap-4 mb-14">
+            <a
+              href="#contact"
+              className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-brand text-white font-medium hover:bg-brand-hover transition-colors shadow-lg shadow-brand/30"
+            >
+              Let&apos;s talk
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+            <a
+              href="/resume.pdf"
+              download
+              className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/15 hover:bg-white/5 transition-colors"
+            >
+              <Download className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+              Download resume
+            </a>
+          </div>
 
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center gap-4"
-        >
-          <a
-            href="#contact"
-            className="px-8 py-3.5 rounded-full bg-brand text-white font-medium hover:bg-brand-hover transition-colors shadow-lg shadow-brand/25"
-          >
-            Let&apos;s Talk
-          </a>
-          <a
-            href="/resume.pdf"
-            download
-            className="px-8 py-3.5 rounded-full glass-panel hover:bg-white/5 transition-colors flex items-center gap-2 group"
-          >
-            <Download className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
-            <span>Download Resume</span>
-          </a>
-        </motion.div>
+          <dl className="grid grid-cols-3 gap-6 max-w-lg border-t border-white/10 pt-6">
+            {heroStats.map((stat) => (
+              <div key={stat.label}>
+                <dt className="sr-only">{stat.label}</dt>
+                <dd className="text-2xl md:text-3xl font-bold tracking-tight">{stat.value}</dd>
+                <dd aria-hidden="true" className="font-mono text-[11px] md:text-xs text-brand-muted mt-1">{stat.label}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <PhoneSession />
       </div>
     </section>
   );

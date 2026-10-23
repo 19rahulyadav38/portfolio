@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase } from "lucide-react";
 import Image from "next/image";
+import { SectionHeading } from "@/components/SectionHeading";
+import { cn } from "@/lib/utils";
 
 const experiences = [
   {
@@ -48,62 +49,72 @@ const experiences = [
 
 export function ExperienceTimeline() {
   return (
-    <section id="experience" className="py-16 px-6 relative">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex items-center gap-4 mb-16"
-        >
-          <div className="p-3 bg-brand/10 rounded-xl text-brand">
-            <Briefcase className="w-6 h-6" />
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold">Experience</h2>
-        </motion.div>
+    <section id="experience" className="py-24 px-6 relative">
+      <div className="max-w-6xl mx-auto">
+        <SectionHeading
+          eyebrow="// 03 · release log"
+          title="Experience"
+          description="Every role so far, newest first."
+        />
 
-        <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-brand/20 before:to-transparent">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ delay: index * 0.1 }}
-              className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
-            >
-              {/* Timeline dot */}
-              <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-background bg-brand/20 text-brand shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 relative z-10">
-                <div className="w-3 h-3 bg-brand rounded-full group-hover:scale-150 transition-transform duration-300" />
-              </div>
+        <ol className="relative ml-2 md:ml-4 border-l border-white/10 space-y-10">
+          {experiences.map((exp, index) => {
+            const isCurrent = index === 0;
+            return (
+              <motion.li
+                key={exp.company}
+                initial={{ opacity: 0, x: -12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5 }}
+                className="relative pl-8 md:pl-12"
+              >
+                {/* Commit dot */}
+                <span className="absolute -left-[7px] top-8 flex w-3.5 h-3.5">
+                  {isCurrent && <span className="absolute inset-0 rounded-full bg-signal opacity-60 animate-ping" />}
+                  <span className={cn("relative w-3.5 h-3.5 rounded-full border-2 border-background", isCurrent ? "bg-signal" : "bg-brand-light")} />
+                </span>
 
-              {/* Content Card */}
-              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] glass-panel p-6 hover:border-brand/50 transition-colors duration-300">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-background/50 overflow-hidden flex items-center justify-center border border-white/5 relative shrink-0">
-                    {exp.logo ? (
-                      <Image src={exp.logo} alt={exp.company} fill sizes="48px" className="object-contain p-1" />
-                    ) : (
-                      <span className="text-sm font-bold text-brand" aria-hidden="true">
-                        {exp.company.split(" ").map((word) => word[0]).join("")}
+                <div className="glass-panel p-6 md:p-8 hover:border-brand/40 transition-colors">
+                  <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-white/[0.04] overflow-hidden flex items-center justify-center border border-white/10 relative shrink-0">
+                        {exp.logo ? (
+                          <Image src={exp.logo} alt={exp.company} fill sizes="48px" className="object-contain p-1" />
+                        ) : (
+                          <span className="text-sm font-bold text-brand-light" aria-hidden="true">
+                            {exp.company.split(" ").map((word) => word[0]).join("")}
+                          </span>
+                        )}
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-xl leading-tight">{exp.role}</h3>
+                        <p className="text-brand-light font-medium">{exp.company}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 font-mono text-xs">
+                      {isCurrent && (
+                        <span className="rounded-md border border-signal/40 bg-signal/10 text-signal px-2 py-1">HEAD</span>
+                      )}
+                      <span className="rounded-md border border-white/10 bg-white/[0.04] text-brand-text px-2 py-1">
+                        v{experiences.length - index}.0
                       </span>
-                    )}
+                      <span className="text-brand-muted px-1">{exp.period}</span>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-foreground">{exp.role}</h3>
-                    <div className="text-brand font-medium text-sm">{exp.company}</div>
-                  </div>
+                  <ul className="grid md:grid-cols-2 gap-x-8 gap-y-3 text-foreground/80 leading-relaxed text-sm">
+                    {exp.achievements.map((achievement) => (
+                      <li key={achievement} className="flex gap-3">
+                        <span className="font-mono text-signal shrink-0" aria-hidden="true">+</span>
+                        <span>{achievement}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div className="text-sm text-brand-muted mb-4 font-mono">{exp.period}</div>
-                <ul className="text-foreground/80 leading-relaxed text-sm space-y-2 list-disc ml-4 marker:text-brand/70">
-                  {exp.achievements.map((achievement, i) => (
-                    <li key={i}>{achievement}</li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.li>
+            );
+          })}
+        </ol>
       </div>
     </section>
   );

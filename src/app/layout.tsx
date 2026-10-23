@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://rahulyadav-dev.vercel.app/",
     title: "Rahul Yadav | Lead Software Engineer",
-    description: "Architecting Scalable Apps for Millions of Users. Explore my portfolio and projects.",
+    description: "Real-time mobile apps that millions rely on. Explore my work, impact and projects.",
     siteName: "Rahul Yadav Portfolio",
   },
   other: {
